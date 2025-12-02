@@ -12,6 +12,9 @@ jobs:
   dev-deploy:
     runs-on: ubuntu-latest
     environment: dev
+    env:
+      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
