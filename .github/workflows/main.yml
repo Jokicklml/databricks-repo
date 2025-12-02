@@ -15,16 +15,10 @@ jobs:
     env:
       DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
       DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+      REPOSITORY_PATH: ${{ vars.REPOSITORY_PATH }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-
-      - name: Extract Commit Author Email and set REPOSITORY_PATH
-        id: extract_email
-        run: |
-          AUTHOR_EMAIL=$(git log -1 --pretty=format:'%ae')
-          echo "AUTHOR_EMAIL=$AUTHOR_EMAIL" >> $GITHUB_ENV
-          echo "REPOSITORY_PATH=/Workspace/Users/$AUTHOR_EMAIL/databricks-repo" >> $GITHUB_ENV
 
       - name: Setup Python
         uses: actions/setup-python@v5
